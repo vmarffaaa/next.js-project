@@ -1,0 +1,39 @@
+.input{
+    width: 500px;
+    height: 35px;
+    border-radius: 18px;
+    font-size: 16px;
+    border: #6262f8 3px solid;
+    padding-left: 10px;
+}
+.button{
+    background:none;
+    border:none;
+    transition: background-color 0.3s ease;
+    padding-left: 15px;
+}
+.form{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+.input::placeholder {
+    margin-left: 5px;
+    color: #5858e0;
+    opacity: 0.9;
+    font-family: 'Varela Round', sans-serif;
+}
+.button:disabled {
+    color: #3e3ea9;
+    opacity: 0.6;
+}
+.input:focus{
+    border: #5858e0 3px solid;
+    color: #5858e0;
+    font-weight: 600;
+    opacity: 0.9;
+    font-family: 'Varela Round', sans-serif;
+}
+.input:not(:focus){
+    color: #5858e0;
+}

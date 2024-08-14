@@ -1,0 +1,12 @@
+.genres_list{
+    display: flex;
+    justify-content: space-evenly;
+    width: 85%;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.flex{
+    display: flex;
+    justify-content: center;
+}
+
