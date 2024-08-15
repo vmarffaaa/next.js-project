@@ -17,13 +17,11 @@ export const getAllMoviesWithPage = async (page:number): Promise<IMovie[]> => {
     return movies.results
 }
 
-// export const getAllMovies = async (page: number = 1): Promise<{ results: IMovie[]; total_pages: number }> => {
-//     const response = await fetch(`${baseUrl}discover/movie?page=${page}`, options);
-//     if (!response.ok) {
-//         throw new Error('Failed to fetch movies');
-//     }
-//     return response.json();
-// };
+export const getAllMovies = async (): Promise<IMovie[]> => {
+    const movies = await fetch(`${baseUrl}discover/movie`, options)
+    .then(response => response.json())
+    return movies.results
+};
 
 
 export const getImgForMovies =async (id: number) => {
