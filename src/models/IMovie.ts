@@ -1,5 +1,4 @@
-
-interface IMovie {
+export interface IMovie {
     adult: boolean;
     genre_ids: number[];
     id: number;

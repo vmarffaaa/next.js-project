@@ -1,34 +1,45 @@
 import {options, baseUrl} from "@/constants/urls";
 import {IMovieDetail} from "@/models/IMovieDetail";
 import {IGenre} from "@/models/IGenre";
+import {IMovie} from "@/models/IMovie";
 
 
-export const getAllMovies = async (): Promise<IMovie[]> => {
-    let movies = await fetch(baseUrl + 'discover/movie?', options)
+
+export const getPage = async (): Promise<IMovie[]> => {
+    let movies = await fetch(`${baseUrl}discover/movie?`, options)
+        .then(response => response.json())
+    return movies.page
+}
+
+export const getAllMoviesWithPage = async (page:number): Promise<IMovie[]> => {
+    let movies = await fetch(`${baseUrl}discover/movie?page=${page}`, options)
         .then(response => response.json())
     return movies.results
 }
 
+// export const getAllMovies = async (page: number = 1): Promise<{ results: IMovie[]; total_pages: number }> => {
+//     const response = await fetch(`${baseUrl}discover/movie?page=${page}`, options);
+//     if (!response.ok) {
+//         throw new Error('Failed to fetch movies');
+//     }
+//     return response.json();
+// };
+
 
 export const getImgForMovies =async (id: number) => {
-    let image = await fetch( baseUrl + 'movie/'+ {id} + '/images', options)
+    let poster = await fetch( `${baseUrl}movie/${id}/images`, options)
     .then(response => response.json())
-    return image
+    return poster;
 }
 
 export const getMovieInfo = async (id: number): Promise<IMovieDetail> => {
-        const url = `https://api.themoviedb.org/3/movie/${id}`;
-        const response = await fetch(url, options);
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(`Error fetching movie info: ${errorData.status_message}`);
-        }
+        const response = await fetch(`${baseUrl}movie/${id}`, options);
         return response.json();
 };
 
 export const searchResults = async(term:string): Promise<IMovie[]> => {
 
-    let movies = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=fc3abae61098b723ef5b0393cee14352&query=${term}&language=en-US&page=1&include_adult=false`, options)
+    let movies = await fetch(`${baseUrl}search/movie?query=${term}&language=en-US&page=1&include_adult=false`, options)
     .then(response => response.json())
     return movies.results
 };
@@ -36,15 +47,16 @@ export const searchResults = async(term:string): Promise<IMovie[]> => {
 
 export const getGenres = async (): Promise<IGenre[]> => {
 
-        const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=en-US', options);
-
-        if (!response.ok) {
-            throw new Error(`Failed to fetch genres: ${response.statusText}`);
-        }
+        const response = await fetch(`${baseUrl}genre/movie/list?language=en-US`, options);
         const data = await response.json();
         return data.genres;
 };
 
+export const getGenresById = async (id: number): Promise<IMovie[]> => {
+    const response = await fetch(`${baseUrl}discover/movie?with_genres=${id}`, options);
+    const data = await response.json();
+    return data.results || [];
+};
 
 
 
