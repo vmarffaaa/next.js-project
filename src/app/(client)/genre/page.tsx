@@ -1,11 +1,10 @@
 import React from 'react';
-import { getGenres} from "@/services/api.service";
-import Link from "next/link";
-import MoviesListComponent from '@/components/moviesList/MoviesListComponent'
+import {getGenres} from "@/services/api.service";
 import GenreBadgeComponent from "@/components/genreBadge/GenreBadgeComponent";
+import {IGenre} from "@/models/IGenre";
 
-const MoviePage = async () => {
-    let genres = await getGenres();
+const GenrePage = async () => {
+    let genres:IGenre[] = await getGenres();
 
     return (
         <div>
@@ -14,4 +13,4 @@ const MoviePage = async () => {
     );
 };
 
-export default MoviePage;
+export default GenrePage;

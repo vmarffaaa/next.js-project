@@ -17,7 +17,7 @@ const StarRating = ({ rating = 0, totalStars = 5 }) => {
                             height: "1.3em",
                             lineHeight: "1em",
                             fontSize: "2em",
-                            color: "#4b4431", // Колір для незаповненої частини зірки
+                            color: "#4b4431",
                             overflow: "hidden",
                             cursor: "pointer",
                         }}
@@ -29,7 +29,7 @@ const StarRating = ({ rating = 0, totalStars = 5 }) => {
                     left: 0,
                     width: `${fillPercent}%`,
                     height: "100%",
-                    color: "#ffc107", // Колір для заповненої частини зірки
+                    color: "#ffc107",
                     overflow: "hidden",
                 }}
             >

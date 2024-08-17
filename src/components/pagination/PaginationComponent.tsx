@@ -1,79 +1,36 @@
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from "@/components/ui/pagination";
+import React from 'react';
+import { useRouter} from 'next/navigation';
+import style from './PaginationComponentStyle.module.css'
 
-export function PaginationComponent({
-                                    page,
-                                    totalPages,
-
-                                }: {
-    page: number;
-    totalPages: number;
-}) {
-    return (
-        <Pagination>
-            <PaginationContent>
-                {page > 1 && (
-                    <>
-                        <PaginationItem>
-                            <PaginationPrevious
-                                href={`/movie?page=${page - 1}`}
-                            />
-                        </PaginationItem>
-
-                        {page > 2 && (
-                            <PaginationItem>
-                                <PaginationEllipsis />
-                            </PaginationItem>
-                        )}
-
-                        <PaginationItem>
-                            <PaginationLink
-                                isActive={false}
-                                href={`/movie?page=${page - 1}`}
-                            >
-                                {page - 1}
-                            </PaginationLink>
-                        </PaginationItem>
-                    </>
-                )}
-
-                <PaginationItem>
-                    <PaginationLink isActive={true} href={`/browse?page=${page}`}>
-                        {page}
-                    </PaginationLink>
-                </PaginationItem>
-
-                {page < totalPages && (
-                    <>
-                        <PaginationItem>
-                            <PaginationLink
-                                href={`/movie?page=${page + 1}`}
-                            >
-                                {page + 1}
-                            </PaginationLink>
-                        </PaginationItem>
-
-                        {page < totalPages - 1 && (
-                            <PaginationItem>
-                                <PaginationEllipsis />
-                            </PaginationItem>
-                        )}
-
-                        <PaginationItem>
-                            <PaginationNext
-                                href={`/movie?page=${page + 1}`}
-                            />
-                        </PaginationItem>
-                    </>
-                )}
-            </PaginationContent>
-        </Pagination>
-    );
+interface PaginationProps {
+    currentPage: number;
 }
+
+const PaginationComponent: React.FC<PaginationProps> = ({ currentPage }) => {
+    const router = useRouter();
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            router.push(`?page=${currentPage - 1}`);
+        }
+    };
+
+    const handleNextPage = () => {
+        router.push(`?page=${currentPage + 1}`);
+    };
+
+    return (
+        <div className={style.box}>
+            <div className={style.pagination}>
+                <button className={style.button} onClick={handlePreviousPage} disabled={currentPage <= 1}>
+                    Prev
+                </button>
+                <button className={style.button} onClick={handleNextPage}>
+                   Next
+                </button>
+            </div>
+        </div>
+    );
+};
+
+export default PaginationComponent;

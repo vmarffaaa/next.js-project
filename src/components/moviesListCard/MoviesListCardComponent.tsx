@@ -1,12 +1,10 @@
 'use client';
 
-
-import React, {FC, useEffect, useState} from 'react';
-import Link from "next/link";
+import React, {FC} from 'react';
 import StarRating from "@/components/starsRating/StarsRatingComponent";
-import {getImgForMovies} from "@/services/api.service";
 import style from './CardComponentStyle.module.css'
 import PosterPreviewComponent from "@/components/posterPreview/PosterPreviewComponent";
+
 
 interface IProps {
     movie: any
@@ -14,11 +12,8 @@ interface IProps {
 
 const MovieslistCardComponent: FC<IProps> = ({movie}) => {
 
-
     const roundedVoteAverage = Math.round(movie.vote_average * 10) / 10;
     const starsRate = movie.vote_average/2
-
-
 
     return (
         <div className={style.card}>
@@ -27,8 +22,10 @@ const MovieslistCardComponent: FC<IProps> = ({movie}) => {
             </div>
                 <h3 className={style.title}>{movie.title}</h3>
                 <p>{movie.adult}</p>
-                <div className={style.ratting}>  <StarRating rating={starsRate} totalStars={5}/>
-                <span className={style.rate}>{roundedVoteAverage}</span></div>
+                <div className={style.ratting}>
+                    <StarRating rating={starsRate} totalStars={5}/>
+                    <span className={style.rate}>{roundedVoteAverage}</span>
+                </div>
 
         </div>
     );

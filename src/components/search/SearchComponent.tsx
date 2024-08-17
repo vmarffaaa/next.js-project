@@ -12,7 +12,7 @@ const SearchComponent = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         router.push(`/search/${search}`);
-        setSearch(''); // Очищає текст в input після надсилання
+        setSearch('');
     };
 
     return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import MoviesListCardComponent from "@/components/moviesListCard/MoviesListCardComponent";
 import style from "@/components/moviesListCard/CardComponentStyle.module.css";
+import {IMovie} from "@/models/IMovie";
 
 interface SearchResultsProps {
     results: IMovie[];

@@ -1,7 +1,6 @@
 'use client';
 
-
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC} from 'react';
 import Link from "next/link";
 import {IGenre} from "@/models/IGenre";
 import style from "./GenreComponentStyle.module.css"
@@ -11,8 +10,6 @@ interface IProps {
 }
 
 const GenreComponent: FC<IProps> = ({genre}) => {
-
-
 
     return (
         <div className={style.genre}>

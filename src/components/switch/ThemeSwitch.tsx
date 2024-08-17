@@ -17,14 +17,12 @@ export default function DarkModeSwitch() {
                         size={36}
                         style={{ color: '#6262f8'}}
                         onClick={() => setTheme('light')}
-                        className='text-xl cursor-pointer hover:text-amber-500'
                     />
                 ) : (
                     <BsBrightnessHigh
                         size={32}
                         style={{ color: 'blue'}}
                         onClick={() => setTheme('dark')}
-                        className='text-xl cursor-pointer hover:text-amber-500'
                     />
                 ))}
         </div>
